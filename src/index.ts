@@ -73,19 +73,19 @@ interface IRepo {
   if (!sum) return;
 
   const oneDay = [
-    { label: '🌞 Morning', commits: morning },
-    { label: '🌆 Daytime', commits: daytime },
-    { label: '🌃 Evening', commits: evening },
-    { label: '🌙 Night', commits: night },
+    { label: '🌞 早晨', commits: morning },
+    { label: '🌆 白天', commits: daytime },
+    { label: '🌃 晚上', commits: evening },
+    { label: '🌙 深夜', commits: night },
   ];
 
   const lines = oneDay.reduce((prev, cur) => {
     const percent = cur.commits / sum * 100;
     const line = [
-      `${cur.label}`.padEnd(10),
-      `${cur.commits.toString().padStart(5)} commits`.padEnd(14),
+      `${cur.label}`.padEnd(3),
+      `${cur.commits.toString().padStart(3)} commits`.padEnd(14),
       generateBarChart(percent, 21),
-      String(percent.toFixed(1)).padStart(5) + '%',
+      String(percent.toFixed(1)).padStart(3) + '%',
     ];
 
     return [...prev, line.join(' ')];
@@ -106,7 +106,7 @@ interface IRepo {
     files: {
       [filename]: {
         // eslint-disable-next-line quotes
-        filename: (morning + daytime) > (evening + night) ? "I'm an early 🐤" : "I'm a night 🦉",
+        filename: (morning + daytime) > (evening + night) ? "我是早起的鸟儿 🐤" : "我是夜猫子 🦉",
         content: lines.join('\n'),
       },
     },
